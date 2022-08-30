@@ -1,4 +1,5 @@
 import express from "express";
+import actions from "./adminRoutes.js";
 
 const routes = (app) => {
     app.route('/').get((req,res) => {
@@ -7,7 +8,8 @@ const routes = (app) => {
 
     app.use(
         express.json(),
-        
+        actions
+
     )
 }
 
