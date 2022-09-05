@@ -7,9 +7,12 @@ const classSchema = new mongoose.Schema(
         startDate: { type: Date, required: true },
         endDate: { type: Date, required: true },
         // verificar depois:
-        registrations: { type: mongoose.Schema.Types.ObjectId, required: true },
+        registrations: { type: [{type: mongoose.Schema.Types.ObjectId}] , required: true },
         // verificar depois:
-        subject: { type: mongoose.Schema.Types.ObjectId, required: true }
+        subject: { type: mongoose.Schema.Types.ObjectId, ref: 'subjects', required: true }
+    },
+    {
+        versionKey: false
     }
 )
 

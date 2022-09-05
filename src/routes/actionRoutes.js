@@ -9,6 +9,8 @@ router
     .post("/actions", AdminController.registerAction)
     .put("/actions/:id", AdminController.editAction)
     .delete("/actions/:id", AdminController.deleteAction)
-
+    // Action Methods
+    .put("/actions/method/:id", AdminController.addMethod)
+    .delete("/actions/method/:id", AdminController.deleteMethod)
 
 export default router

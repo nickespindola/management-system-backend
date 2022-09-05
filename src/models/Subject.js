@@ -6,7 +6,10 @@ const subjectSchema = new mongoose.Schema(
         workLoad: { type: Number, required: true },
         studyProgram: { type: String, required: true },
         // verificar depois:
-        groupClasses: { type: mongoose.Schema.Types.ObjectId }
+        groupClasses: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'groupClasses' }] }
+    },
+    {
+        versionKey: false
     }
 )
 

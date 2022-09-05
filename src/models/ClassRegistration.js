@@ -11,6 +11,6 @@ const classRegistrationSchema = new mongoose.Schema(
     }
 )
 
-const classRegistration = mongoose.model("classRegistration", classRegistrationSchema)
+const classRegistrations = mongoose.model("classRegistration", classRegistrationSchema)
 
-export default classRegistration
+export default classRegistrations
