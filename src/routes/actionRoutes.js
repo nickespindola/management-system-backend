@@ -1,16 +1,18 @@
 import express from "express";
-import AdminController from "../controllers/adminController.js"
+import AdminController from "../controllers/users/adminController.js"
 
 const router = express.Router()
 
+const control = AdminController.actionsController
+
 router
     // Actions
-    .get("/actions", AdminController.listActions)
-    .post("/actions", AdminController.registerAction)
-    .put("/actions/:id", AdminController.editAction)
-    .delete("/actions/:id", AdminController.deleteAction)
+    .get("/actions", control.listActions)
+    .post("/actions", control.registerAction)
+    .put("/actions/:id", control.editAction)
+    .delete("/actions/:id", control.deleteAction)
     // Action Methods
-    .put("/actions/method/:id", AdminController.addMethod)
-    .delete("/actions/method/:id", AdminController.deleteMethod)
+    .put("/actions/method/:id", control.addMethod)
+    .delete("/actions/method/:id", control.deleteMethod)
 
 export default router

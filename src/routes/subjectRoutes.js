@@ -1,16 +1,18 @@
 import express from "express";
-import AdminController from "../controllers/adminController.js"
+import AdminController from "../controllers/users/adminController.js"
 
 const router = express.Router()
 
+const control = AdminController.subjectsController
+
 router
     // Subjects
-    .get("/subjects", AdminController.listSubjects)
-    .post("/subjects", AdminController.registerSubject)
-    .put("/subjects/:id", AdminController.editSubject)
-    .delete("/subjects/:id", AdminController.deleteSubject)
+    .get("/subjects", control.listSubjects)
+    .post("/subjects", control.registerSubject)
+    .put("/subjects/:id", control.editSubject)
+    .delete("/subjects/:id", control.deleteSubject)
     // Add Subject Class
-    .put("/subjects/classes/:id", AdminController.addSubjectClass)
-    .delete("/subjects/classes/:id", AdminController.deleteSubjectClass)
+    .put("/subjects/classes/:id", control.addSubjectClass)
+    .delete("/subjects/classes/:id", control.deleteSubjectClass)
 
 export default router
