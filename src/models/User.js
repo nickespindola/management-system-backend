@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
@@ -8,9 +8,9 @@ const userSchema = new mongoose.Schema(
         surname: { type: String, required: true },
         password: { type: String, required: true },
         phoneNumber: { type: String, unique: true },
-        adress: { type: String },
+        adress: { type: String, required: true },
         // preencher referência depois:
-        registration: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'classRegistrations' }], unique: true }
+        registration: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'classRegistration' }], unique: true }
     },
     {
         versionKey: false

@@ -4,6 +4,7 @@ import roles from "./roleRoutes.js";
 import classes from "./classRoutes.js";
 import subjects from "./subjectRoutes.js";
 import classRegistrations from "./classRegistrationRoutes.js";
+import users from "./userRoutes.js";
 
 const routes = (app) => {
     app.route('/').get((req,res) => {
@@ -16,7 +17,8 @@ const routes = (app) => {
         roles,
         classes,
         subjects,
-        classRegistrations
+        classRegistrations,
+        users
 
     )
 }

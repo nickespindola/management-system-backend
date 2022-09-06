@@ -3,6 +3,7 @@ import GroupClassesController from "../management/groupClassesController.js";
 import RolesController from "../management/rolesController.js";
 import SubjectsController from "../management/subjectsController.js";
 import ClassRegistrationsController from "../management/classRegistrationsController.js";
+import UsersController from "../management/usersController.js";
 
 class AdminController {
 
@@ -20,6 +21,9 @@ class AdminController {
 
     // Class Registrations
     static classRegistrationsController = ClassRegistrationsController
+
+    // Users
+    static usersController = UsersController
 
 }
 

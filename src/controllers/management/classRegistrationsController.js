@@ -5,7 +5,15 @@ class ClassRegistrationsController {
 
     // List Class Registrations
     static listClassRegistrations = async (req, res) => {
-        crud.listModel(req, res, classRegistrations)
+
+        try {
+            const listClassRegistrations = await classRegistrations.find().populate('role').populate('groupClass');
+            if (listClassRegistrations) {
+                res.json(listClassRegistrations);
+            }
+        } catch (error) {
+            res.status(401).send(error);
+        }
     }
 
     // Register Class Registration
