@@ -24,7 +24,28 @@ class UsersController {
     }
 
     // Login
+    static loginUser = async (req, res) => {
+        try {
+            const { cpf, password } = req.body
+            const checkUser = await users.find({ cpf: cpf })
+            if (!checkUser) return res.status(400).send("Email ou senha inválidos")
+            const passwordCheck = bcrypt.compareSync(password, checkUser[0].password)
+            if (!passwordCheck) return res.status(400).send("Email ou senha inválidos")
 
+            const payload = { id: checkUser._id, cpf: checkUser.cpf }
+            const token = jwt.sign(payload, process.env.SECRET_TOKEN)
+            res.header('Authorization', token)
+            const userUpdate = await users.findByIdAndUpdate(checkUser._id, {
+                authKey: token
+            })
+
+            res.status(200).send(userUpdate)
+
+        } catch (error) {
+            res.status(400).send("Email ou senha inválidos")
+        }
+    }
+    
 }
 
 export default UsersController
