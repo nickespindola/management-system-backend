@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema(
         phoneNumber: { type: String, unique: true },
         adress: { type: String, required: true },
         // preencher referência depois:
-        registration: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'classRegistration' }], unique: true }
+        registration: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'classRegistration' }], unique: true },
+        authKey: { type: String }
     },
     {
         versionKey: false

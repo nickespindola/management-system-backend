@@ -6,10 +6,12 @@ const router = express.Router()
 const control = AdminController.usersController
 
 router
-    // Subjects
+    // Users
     .get("/users", control.listUsers)
     .post("/users", control.registerUser)
     .put("/users/:id", control.editUser)
     .delete("/users/:id", control.deleteUser)
+    // Login
+    .post("/users/login", control.loginUser)
 
 export default router
