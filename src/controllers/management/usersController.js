@@ -11,11 +11,12 @@ class UsersController {
 
     // Register User
     static registerUser = async (req, res) => {
-        // crud.registerModel(req, res, users)
         try {
+            // Code to encrypt password when registering it
             let user = new users(req.body)
             const salt = bcrypt.genSaltSync()
             user.password = bcrypt.hashSync(user.password, salt)
+
             const newUser = await user.save()
     
             if (newUser) {
@@ -48,8 +49,7 @@ class UsersController {
             if (!checkUser) return res.status(400).send("CPF ou senha inválidos")
 
             const passwordCheck = bcrypt.compareSync(password, checkUser.password)
-            console.log(passwordCheck);
-            if (!passwordCheck) return res.status(400).send("Erro na senha")
+            if (!passwordCheck) return res.status(400).send("CPF ou senha inválidos")
             
             function createTokenJWT(checkUser) {
                 const payload = { id: checkUser._id, cpf: checkUser.cpf }
@@ -58,7 +58,6 @@ class UsersController {
             }
 
             const token = createTokenJWT(req)
-            console.log(token);
 
             res.header('Authorization', token)
             const userUpdate = await users.findByIdAndUpdate(checkUser._id, {
@@ -69,6 +68,17 @@ class UsersController {
 
         } catch (error) {
             res.status(400).send("Ocorreu um erro")
+        }
+    }
+
+    // Logout
+    static logoutUser = async (req, res) => {
+        try {
+            const token = req.token
+            await blacklist.addTokenToBlacklist(token)
+            res.send("Logout feito")
+        } catch (error) {
+            res.status(400).send(error)
         }
     }
 

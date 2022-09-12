@@ -1,5 +1,13 @@
 import users from "../../models/User.js";
 import jwt from "jsonwebtoken";
+import blacklist from '../../../redis/blacklist-manipulation.js'
+
+async function verifyIfTokenExistsInBlacklists(token) {
+    const checkTokenInBlacklist = await blacklist.verifyIfTokenExistsInBlacklist(token)
+    if (checkTokenInBlacklist) {
+        throw new jwt.JsonWebTokenError("Token expirado")
+    }
+}
 
 async function auth(req, res, next) {
     const token = req.header("Authorization")

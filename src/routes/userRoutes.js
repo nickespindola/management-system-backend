@@ -1,5 +1,6 @@
 import express from "express";
 import AdminController from "../controllers/users/adminController.js";
+import auth from '../controllers/management/authController.js'
 
 const router = express.Router()
 
@@ -13,5 +14,7 @@ router
     .delete("/users/:id", control.deleteUser)
     // Login
     .post("/users/login", control.loginUser)
+    // Logout
+    .get("/users/logout", auth, control.logoutUser)
 
 export default router
